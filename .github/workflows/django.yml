@@ -12,13 +12,12 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        # LES VERSIONS CORRECTES: 3.10, 3.11 i 3.12 segons l'enunciat 
         python-version: ["3.10", "3.11", "3.12"]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v4
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install Dependencies
@@ -27,5 +26,4 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        # Els tests s'executaran en mode headless gràcies al codi del teu tests.py 
         python manage.py test
